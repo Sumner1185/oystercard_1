@@ -17,8 +17,6 @@ class Oystercard
     @balance += value
   end
 
-  
-
   def touch_in
     raise 'Insufficient funds' unless sufficient_funds?
 
@@ -38,7 +36,7 @@ class Oystercard
   def deduct(value)
     @balance -= value
   end
-  
+
   def balance_exceeded?(value)
     balance + value > MAX_BALANCE
   end
