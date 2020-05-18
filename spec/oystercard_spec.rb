@@ -13,6 +13,10 @@ describe Oystercard do
 
   it { is_expected.to respond_to(:deduct).with(1).argument }
 
+  it { is_expected.to respond_to(:touch_in) }
+
+  it { is_expected.to respond_to(:touch_out) }
+
   describe '#top_up' do
     it 'tops up the users balance' do
       expect { card.top_up(5) }.to change { card.balance }.by(5)

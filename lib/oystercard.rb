@@ -5,8 +5,8 @@ class Oystercard
   DEFAULT_BALANCE = 0
   MAX_BALANCE = 90
 
-  def initialize(_balance = DEFAULT_BALANCE)
-    @balance = DEFAULT_BALANCE
+  def initialize(balance = DEFAULT_BALANCE)
+    @balance = balance
   end
 
   def top_up(value)
@@ -17,6 +17,14 @@ class Oystercard
 
   def deduct(value)
     @balance -= value
+  end
+
+  def touch_in
+
+  end
+
+  def touch_out
+
   end
 
   private
