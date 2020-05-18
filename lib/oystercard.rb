@@ -10,16 +10,17 @@ class Oystercard
   end
 
   def top_up(value)
-    fail "Error: Limit of £#{MAX_BALANCE} reached" if balance_exceeded?(value)
+    raise "Error: Limit of £#{MAX_BALANCE} reached" if balance_exceeded?(value)
 
     @balance += value
   end
 
   def deduct(value)
-
+    @balance -= value
   end
 
   private
+
   def balance_exceeded?(value)
     balance + value > MAX_BALANCE
   end
