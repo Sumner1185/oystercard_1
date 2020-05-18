@@ -36,6 +36,7 @@ class Oystercard
   end
 
   private
+  
 
   def balance_exceeded?(value)
     balance + value > MAX_BALANCE
