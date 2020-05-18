@@ -17,6 +17,16 @@ describe Oystercard do
 
   it { is_expected.to respond_to(:touch_out) }
 
+  it 'should be able to #touch_in' do
+    card.touch_in
+      expect(card).to be_in_journey
+  end
+
+  it 'should be able to #touch_out' do
+    card.touch_out
+      expect(card).not_to be_in_journey
+  end
+
   describe '#top_up' do
     it 'tops up the users balance' do
       expect { card.top_up(5) }.to change { card.balance }.by(5)
