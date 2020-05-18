@@ -42,4 +42,10 @@ describe Oystercard do
       expect { money_card.deduct(10) }.to change { money_card.balance }.by(-10)
     end
   end
+
+  describe '#touch_in' do
+  it 'raises an error if balance less than minimum amount' do
+    expect { card.touch_in }.to raise_error('Insufficient funds')
+  end
+ end
 end
