@@ -18,13 +18,13 @@ describe Oystercard do
   it { is_expected.to respond_to(:touch_out) }
 
   it 'should be able to #touch_in' do
-    card.touch_in
-    expect(card).to be_in_journey
+    money_card.touch_in
+      expect(money_card).to be_in_journey
   end
 
   it 'should be able to #touch_out' do
     card.touch_out
-    expect(card).not_to be_in_journey
+      expect(card).not_to be_in_journey
   end
 
   describe '#top_up' do
@@ -40,12 +40,6 @@ describe Oystercard do
   describe '#deduct' do
     it 'deducts cost from the users balance' do
       expect { money_card.deduct(10) }.to change { money_card.balance }.by(-10)
-    end
-
-    describe '#touch_in' do
-      it 'raises an error if balance less than minimum amount' do
-        expect { card.touch_in }.to raise_error('Insufficient funds')
-      end
     end
   end
 end
