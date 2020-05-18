@@ -9,14 +9,6 @@ describe Oystercard do
     expect(card.balance).to eq 0
   end
 
-  it { is_expected.to respond_to(:top_up).with(1).argument }
-
-  it { is_expected.to respond_to(:deduct).with(1).argument }
-
-  it { is_expected.to respond_to(:touch_in) }
-
-  it { is_expected.to respond_to(:touch_out) }
-
   it 'should be able to #touch_in' do
     money_card.touch_in
       expect(money_card).to be_in_journey
@@ -44,8 +36,14 @@ describe Oystercard do
   end
 
   describe '#touch_in' do
-  it 'raises an error if balance less than minimum amount' do
-    expect { card.touch_in }.to raise_error('Insufficient funds')
+    it 'raises an error if balance less than minimum amount' do
+      expect { card.touch_in }.to raise_error('Insufficient funds')
+    end
   end
- end
+
+  describe '#touch_out' do
+    it 'deducts MIN_AMOUNT from balance' do
+      expect { money_card.touch_out }.to change { money_card.balance }.by(-Oystercard::MIN_AMOUNT)
+    end
+  end
 end

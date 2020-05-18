@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Oystercard
-  attr_reader :balance
+  attr_reader :balance, :in_journey
   DEFAULT_BALANCE = 0
   MAX_BALANCE = 90
   MIN_AMOUNT = 1
@@ -29,15 +29,14 @@ class Oystercard
 
   def touch_out
     @in_journey = false
+    deduct(MIN_AMOUNT)
   end
 
   def in_journey?
-    @in_journey
+    in_journey
   end
 
   private
-  
-
   def balance_exceeded?(value)
     balance + value > MAX_BALANCE
   end
