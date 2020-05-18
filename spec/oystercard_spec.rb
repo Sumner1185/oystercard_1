@@ -4,19 +4,20 @@ require 'oystercard'
 describe Oystercard do
   let(:card) { Oystercard.new }
   let(:money_card) { Oystercard.new(50) }
+  let(:station) { double :station }
 
   it 'should initialize with a default balance of 0' do
     expect(card.balance).to eq 0
   end
 
   it 'should be able to #touch_in' do
-    money_card.touch_in
-      expect(money_card).to be_in_journey
+    money_card.touch_in(station)
+    expect(money_card).to be_in_journey
   end
 
   it 'should be able to #touch_out' do
     card.touch_out
-      expect(card).not_to be_in_journey
+    expect(card).not_to be_in_journey
   end
 
   describe '#top_up' do
@@ -31,7 +32,7 @@ describe Oystercard do
 
   describe '#touch_in' do
     it 'raises an error if balance less than minimum amount' do
-      expect { card.touch_in }.to raise_error('Insufficient funds')
+      expect { card.touch_in(station) }.to raise_error('Insufficient funds')
     end
   end
 
