@@ -16,8 +16,9 @@ describe Oystercard do
   end
 
   it 'should be able to #touch_out' do
-    card.touch_out
-    expect(card).not_to be_in_journey
+    money_card.touch_in(station)
+    money_card.touch_out
+    expect(money_card).not_to be_in_journey
   end
 
   describe '#top_up' do
@@ -33,6 +34,11 @@ describe Oystercard do
   describe '#touch_in' do
     it 'raises an error if balance less than minimum amount' do
       expect { card.touch_in(station) }.to raise_error('Insufficient funds')
+    end
+
+    it 'should remember the entry_station' do
+      money_card.touch_in(station)
+      expect(money_card.entry_station).to eq station
     end
   end
 
